@@ -1,6 +1,5 @@
 <?php
 class priority {
-    public $stmt;
     
     public function getPriorities() {
         $con = new connection();

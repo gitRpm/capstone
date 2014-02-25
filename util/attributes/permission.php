@@ -1,6 +1,5 @@
 <?php
 class permission {
-    public $stmt;
     
     public function getPermissions() {
         $con = new connection();

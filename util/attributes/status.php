@@ -1,6 +1,5 @@
 <?php
 class status {
-    public $stmt;
     
     public function getStatuses() {
         $con = new connection();

@@ -1,7 +1,6 @@
 <?php
 //include_once '/db_connect.php';
 class user {
-    public $id, $username, $name, $permission;
     
     function getUserInfo($u) {
         $con = new connection();

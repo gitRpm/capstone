@@ -1,6 +1,5 @@
 <?php
 class frequency {
-    public $stmt;
     
     public function getFrequencies() {
         $con = new connection();

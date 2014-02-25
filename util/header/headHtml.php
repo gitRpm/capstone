@@ -33,7 +33,9 @@ echo "  <title>TMS</title>
         <script src=\"http://code.jquery.com/ui/1.10.3/jquery-ui.js\"></script>
         <script src=\"/js/ajax.js\" ></script>
         </head><body><div class='pageWrap'>";
-        echo "<a style='position:absolute; right:0px; top:-15px' href='/logout'>Log Out</a>";
+        if ($page !== $loginPage) {
+            echo "<a style='position:absolute; right:0px; top:-15px' href='/logout'>Log Out</a>";
+        }
        
         if (isset($_SESSION['login'])) {
             echo "<div style='position:absolute; left:0px; top:-15px'>Hi ".$_SESSION['user']['username']."</div>";

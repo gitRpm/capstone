@@ -9,7 +9,7 @@ class topNav {
         $this->stmt->execute();
         $this->stmt->bind_result($display_name, $href, $permission);
         $i = 0;
-        while ($stmt->fetch()) {
+        while ($this->stmt->fetch()) {
             $nav[$i] = array('display'=>$display_name, 'href'=>$href, 'permission'=>$permission);
             $i++;
         }
