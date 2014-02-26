@@ -164,7 +164,7 @@ $(document).ready(function(){
                     var row = $('tr#'+taskId);
                     var json = data;
                     obj = JSON.parse(json);
-                    console.log(obj);
+                    //console.log(obj);
                     $('span.glyphicon-exclamation-sign', row).removeClass('Low');
                     $('span.glyphicon-exclamation-sign', row).removeClass('Medium');
                     $('span.glyphicon-exclamation-sign', row).removeClass('High');
