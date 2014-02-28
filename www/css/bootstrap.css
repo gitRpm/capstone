@@ -7227,7 +7227,7 @@ input.markComplete {
 }
 
 th#view, #edit {
-    width:75px;
+    width:45px;
 }
 
 span.glyphicon-eye-open, .glyphicon-pencil {

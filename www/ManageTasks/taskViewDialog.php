@@ -53,7 +53,7 @@ echo "</div>";
 echo "<div class='form-group'>";
 echo "<label class='col-sm-3 control-label'>Date Completed</label>"; 
 echo "<div class='col-sm-9'>";
-echo "<div class='well well-sm' id='formDateCompleted'></div>";
+echo "<div class='well well-sm' id='viewDateCompleted'></div>";
 echo "</div>";
 echo "</div>";
 echo "<div class='col-sm-offset-3 col-sm-1'>";

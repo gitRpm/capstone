@@ -11,11 +11,11 @@ echo "<style>
 }
 
 th#task_id {
-    width:40px;
+    width:50px;
 }
 
 th#priority_id {
-    width:50px;
+    width:85px;
 }
 
 th#status_id {
@@ -23,7 +23,7 @@ th#status_id {
 }
 
 th#markComplete {
-    width:55px;
+    width:40px;
 }
 
 th#markComplete {
@@ -31,7 +31,7 @@ th#markComplete {
 }
 
 th#username {
-    width:175px;
+    width:150px;
 }
 
 th#due_date, #date_completed, #date_created {

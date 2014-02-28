@@ -2,6 +2,7 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT']."/../util/topNav/topNavBuild.php";
 include "/userEditDialog.php";
+include "/userViewDialog.php";
 echo "<div class='mainContent' >";
 echo "<br />";
 echo "<h3 style='margin:0; padding:5'>Users</h3>";

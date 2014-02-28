@@ -237,7 +237,6 @@ $(document).ready(function(){
         // edit a user
         $('.editUser span').click(function(){
             var userId = $(this).parents('td').attr('id');
-            
             $.get('userActions.php', {
                 purpose:'edit',
                 userId:userId
@@ -245,7 +244,7 @@ $(document).ready(function(){
                 var json = data;
                 obj = JSON.parse(json);
                 $('#formUserId').html(obj.userId);
-                $('[name=formuserId]').val(obj.userId);
+                $('[name=formUserId]').val(obj.userId);
                 $('[name=formPermissions]').val(obj.permission);
                 $('[name=formFirstName]').val(obj.firstName);
                 $('[name=formLastName]').val(obj.lastName);
@@ -254,5 +253,60 @@ $(document).ready(function(){
             });
             $("#dialogEditUser").dialog("open");
         });
+        
+         // form  
+        $("#dialogFormEditUser").submit(function() {
+            var userId = $('[name="formUserId"]').val();
+            var $form = $(this);
+            var $inputs = $form.find("input, select, button");
+            var serializedData = $form.serialize();
+            $inputs.prop("disabled", true);
+            $.post('userActions.php', {
+                purpose:'update',
+                data: serializedData
+                
+            }, function(){
+                $.get('userActions.php', {
+                    purpose:'view',
+                    userId:userId
+                }, function(data) {
+                    var row = $('tr#'+userId);
+                    var json = data;
+                    obj = JSON.parse(json);
+                    $('td.permission', row).html(obj.permissionDisplay);
+                    $('td.firstname', row).html(obj.firstName);
+                    $('td.lastname', row).html(obj.lastName);
+                    $('td.username', row).html(obj.username);
+                });
+                $("#dialogEditUser").dialog("close");
+                $inputs.prop("disabled", false);
+            });
+            
+            return false;
+            
+        });
+        
+        // view a user
+        $('.viewUser span').click(function(){
+            var userId = $(this).parents('td').attr('id');
+            
+            $.get('userActions.php', {
+                purpose:'view',
+                userId:userId
+            }, function(data) {
+                var json = data;
+                obj = JSON.parse(json);
+                $('#viewUserId').html(obj.userId);
+                $('#viewPermission').html(obj.permissionDisplay);
+                $('#viewFirstName').html(obj.firstName);
+                $('#viewLastName').html(obj.lastName);
+                $('#viewUsername').html(obj.username);
+            });
+            $("#dialogViewUser").dialog("open");
+        });
+        // close view
+       $('#closeUserView').click(function(){
+          $('#dialogViewUser').dialog("close");
+       });
     }
 });

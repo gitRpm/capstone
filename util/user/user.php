@@ -19,13 +19,13 @@ class user {
     function getUserInfoById($id) {
         $con = new connection();
         $id = (int)$id;
-        $this->stmt = $con->con->prepare("SELECT user_id, first_name, last_name, username, password, permission_id FROM users WHERE user_id = ?");
+        $this->stmt = $con->con->prepare("SELECT u.user_id, u.first_name, u.last_name, u.username, u.password, u.permission_id, p.permission_display FROM users u INNER JOIN permissions p ON u.permission_id = p.permission_id WHERE user_id = ?");
         $this->stmt->bind_param('i', $id);
         $this->stmt->execute();
-        $this->stmt->bind_result($userId, $firstName, $lastName, $user, $pass, $permissionId);
+        $this->stmt->bind_result($userId, $firstName, $lastName, $user, $pass, $permissionId, $permissionDisplay);
         
         while ($this->stmt->fetch()) {
-            $user = array('userId' => $userId, 'username' => $user, 'password' => $pass, 'firstName' => $firstName, 'lastName' => $lastName, 'permission' => $permissionId);
+            $user = array('userId' => $userId, 'username' => $user, 'password' => $pass, 'firstName' => $firstName, 'lastName' => $lastName, 'permission' => $permissionId, 'permissionDisplay' => $permissionDisplay);
         }
         $this->stmt->close();
         return $user;
@@ -66,6 +66,16 @@ class user {
         return $this->stmt->execute();
         $this->stmt->close();
         
+    }
+    
+    function updateUser($permission, $firstName, $lastName, $username, $userId) {
+        $permission = (int)$permission;
+        $userId = (int)$userId;
+        $con = new connection();
+        $this->stmt = $con->con->prepare("UPDATE task_management.users SET permission_id=?, first_name=?, last_name=?, username=? WHERE user_id=?");
+        $this->stmt->bind_param('isssi', $permission, $firstName, $lastName, $username, $userId);
+        $this->stmt->execute();
+        $this->stmt->close();
     }
     
     function displayInnerTable($user) {
