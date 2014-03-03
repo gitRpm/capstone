@@ -10,6 +10,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $user->getUserInfoById($_GET['userId']);
         echo json_encode($user->getUserInfoById($_GET['userId']));
     }
+    
+    if ($_GET['purpose'] == 'sort') {
+        $user = new user();
+        $array = $user->getSortedUsers($_GET['sortBy'], $_GET['order']);
+        foreach ($array as $value) {
+            echo $user->displayInnerTable($value);
+        }
+    }
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -23,5 +31,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $userId = $data['formUserId'];
         $user = new user();
         $user->updateUser($permission, $firstName, $lastName, $username, $userId);
+    }
+    
+    if ($_POST['purpose'] == 'delete') {
+        $user = new user();
+        $user->deleteUser($_POST['userId']);
     }
 }

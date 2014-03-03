@@ -7,10 +7,15 @@ echo "<br />";
 echo "<div class='formWrap'>";
 if (isset($_POST['submit'])) {
     $task = new task;
-    if($task->insertTask($_POST)) {
-        $message = "Task " . $task->insertTask($_POST) . " successfully created.";
-        echo "<br /><div class='alert alert-success' style='margin-left:100px'>" . $message . "</div>";
+    $taskId = $task->insertTask($_POST);
+    if($taskId) {
+        $message = "Task " . $taskId . " successfully created.";
+        $class = 'success';
+    } else {
+        $message = "Could not create task.";
+        $class = 'danger';
     }
+    echo "<br /><div class='alert alert-".$class."' style='margin-left:100px'>" . $message . "</div>";
 }
 include $_SERVER['DOCUMENT_ROOT']."/../util/task/taskForm.php";
 echo "</div>";

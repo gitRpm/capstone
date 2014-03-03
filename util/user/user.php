@@ -47,7 +47,6 @@ class user {
     function checkIfUserExists($username) {
         
         $con = new connection();
-        var_dump($username);
         $this->stmt = $con->con->prepare("SELECT user_id FROM users WHERE username = ?");
         $this->stmt->bind_param('s', $username);
         $this->stmt->execute();
@@ -75,6 +74,31 @@ class user {
         $this->stmt = $con->con->prepare("UPDATE task_management.users SET permission_id=?, first_name=?, last_name=?, username=? WHERE user_id=?");
         $this->stmt->bind_param('isssi', $permission, $firstName, $lastName, $username, $userId);
         $this->stmt->execute();
+        $this->stmt->close();
+    }
+    
+    function getSortedUsers($column, $order) {
+        $con = new connection();
+        $this->stmt = $con->con->prepare("SELECT u.user_id, u.first_name, u.last_name, u.username, u.permission_id, p.permission_display FROM users u INNER JOIN permissions p ON u.permission_id = p.permission_id ORDER BY $column $order");
+        $this->stmt->execute();
+        $this->stmt->bind_result($userId, $firstName, $lastName, $username, $permissionId, $permission);
+        while ($this->stmt->fetch()) {
+            $users[$userId] = array('userId'=>$userId, 'firstName'=>$firstName, 'lastName'=>$lastName, 'username'=>$username, 'permission'=>$permission);
+        }
+        
+        return $users;
+    }
+    
+    function deleteUser($userId) {
+        $userId = (int)$userId;
+        $con = new connection();
+        $this->stmt = $con->con->prepare("DELETE FROM users WHERE user_id=?");
+        $this->stmt->bind_param('i', $userId);
+        if(!$this->stmt->execute()) {
+           return false;
+        } else {
+            return true;
+        }
         $this->stmt->close();
     }
     
