@@ -5,9 +5,9 @@ include "/userEditDialog.php";
 include "/userViewDialog.php";
 echo "<div class='mainContent' >";
 echo "<br />";
-echo "<h3 style='margin:0; padding:5'>Users</h3>";
+echo "<h3 style='margin:auto; padding:15px 0 15px; width:95%'>Users</h3>";
 echo "<div class='tableWrap'>";
-echo "<table class='table table-hover table-striped table-bordered' >";
+echo "<table class='table table-hover table-striped table-bordered' style='width:95%; margin:auto' >";
 echo "<thead>";
 echo "<th id='user_id'><span class='sortableUser'>ID</span></th>";
 echo "<th id='permission_id'><span class='sortableUser'>Permission</span></th>";
@@ -35,5 +35,3 @@ echo "</div>";
 </div>
 <?php
 include $_SERVER['DOCUMENT_ROOT']."/../util/footer/footer.php";
-
-

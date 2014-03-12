@@ -7182,6 +7182,8 @@ td.visible-print {
     border: 1px solid #dddddd; 
     border-top: transparent;
     min-height:600px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
 }
 .form-container {
     margin-top:100px;
@@ -7244,4 +7246,61 @@ span.glyphicon-eye-open:focus, .glyphicon-pencil:focus{
 .formWrap {
     margin-left:140px;
     width:60%;
+}
+
+.charts {
+    text-align:center;
+    margin: 0 auto;
+    width:100%;
+}
+
+.chartWrap {
+    position:relative;
+    display:inline-block;
+}
+
+.chart {
+    margin: 20px auto;
+}
+
+.index {
+    border-radius: 5px;
+   
+    text-align:left;
+    position:absolute;
+    top:60;
+    right:0;
+    width:125px;
+    height:150px;
+    margin-top: 10px
+}
+
+.indexWrapper {
+    margin: 20px 0 10px 0;
+    vertical-align: middle;
+}
+
+.percentage {
+    float:right;
+    height:35px;
+    width:35px;
+    border:1px solid;
+    border-radius: 3px;
+    padding: 5px;
+    margin-top:-6px;
+}
+
+.percentage#complete {
+    background-color: #dff0d8;
+    border-color: #d0e9c6;
+}
+
+.percentage#incomplete {
+    background-color: rgba(151,187,205,0.5);
+    border-color: rgba(151,187,205,1);    
+}
+
+.percentage#pastDue {
+    background-color: #f2dede;
+    border-color: #ebcccc;    
 }

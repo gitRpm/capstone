@@ -1,15 +1,20 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/../util/task/task.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/../util/user/user.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/../util/dbo/connection.php";
-if ($_REQUEST['data'] === 'users') {
-    $users = new user();
-    $userInfo = array();
-    foreach ($users->getUsers() as $key => $val) {
-        $userInfo[$key]['username'] = $val['username'];
-        $userInfo[$key]['complete'] = 30;
-        $userInfo[$key]['incomplete'] = 20;
-        $userInfo[$key]['pastDue'] = 10;
+include_once $_SERVER['DOCUMENT_ROOT'] . "/../util/chart/chart.php";
+if ($_GET['data'] === 'barChart') {
+    $barChart = new chart();
+    $barChartInfo = array();
+    foreach ($barChart->getBarChart() as $key => $val) {
+        $barChartInfo[$key]['username'] = $val['user'];
+        $barChartInfo[$key]['completed'] = $val['completed'];
+        $barChartInfo[$key]['incomplete'] = $val['incomplete'];
+        $barChartInfo[$key]['pastDue'] = $val['pastDue'];
     }
-    echo json_encode($userInfo);
+    echo json_encode($barChartInfo);
 }
+
+if ($_GET['data'] === 'pieChart') {
+    $pieChart = new chart();
+    echo json_encode($pieChart->getPieChart());
+}
+

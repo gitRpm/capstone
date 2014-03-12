@@ -43,13 +43,19 @@ th#due_date, #date_completed, #date_created {
     display: block;
     max-height: 300px;
     overflow-y: scroll;
+    margin:auto;
+    width:95%;
+}
+
+.table {
+    margin-bottom:0;
 }
     </style>";
 $tasks = new task();
 echo "<div class='mainContent' >";
-echo "<br />";
+
 foreach($tasks->getFreq() as $key => $freq) {
-    echo "<h3 style='margin:0; padding:5'>". $freq ."</h3>";
+    echo "<h3 style='margin:auto; width:95%; padding:15px 0 15px 0'>".$freq ."</h3>";
     echo "<div class='tableWrap'>";
     echo "<table id='".$key."' class='table table-hover table-striped table-bordered' >";
     echo "<thead>";
